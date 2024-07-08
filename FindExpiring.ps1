@@ -18,4 +18,5 @@ $ServiceAccount.PasswordExpiration = [DateTimeOffset]::FromFileTime($ServiceAcco
 $ExpiringPasswordObject.Add($ServiceAccount)
 }
 
-$ExpiringPasswordObject | Out-GridView
+$ExpiringPasswordObject | Out-GridView 
+$ExpiringPasswordObject | Select Displayname, DistinguishedName, Enabled, GivenName, UserPrincipalName, SamAccountName, PasswordNeverExpires, @{n="PasswordExpiration";e={$_.PasswordExpiration}} | Export-CSV C:\Temp\AccountExpiring.CSV
